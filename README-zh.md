@@ -1,4 +1,4 @@
-# GAnyUnity
+# GAnyAndroid
 [English](README.md)
 
 为 Android 提供 GAny 支持, 方便通过 GAny 加载和调用 native 代码, 甚至通过装载 gx-script 来支持 lua 扩展.
