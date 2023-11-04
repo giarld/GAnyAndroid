@@ -8,7 +8,7 @@
 因Android系统对dlopen的限制, 因此需要将你的模块动态链接到工程中, 具体步骤如下:
 1. 将你需要通过GAny加载的模块的源码或库文件加入到工程中.
 2. 在 `CMakeList.txt` 中为 `gany-droid` 链接你的模块.
-3. 在 `src/gany-droid/src/import_modules.cpp` 中按照注释掉的代码指示, 引入你的模块.
+3. 在 `src/gany-droid/src/import_modules.cpp` 中按照宏 `ENABLE_EXAMPLE` 内代码所提示的方式, 引入你的模块.
 ### 2. 构建
 新建 build 目录并进入, 执行以下命令(如果没安装cmake, 请先安装, cmake version >= 20):
 ```shell

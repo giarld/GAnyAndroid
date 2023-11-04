@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.gx.example.databinding.ActivityMainBinding;
@@ -26,18 +28,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         TextView tv = binding.sampleText;
+        EditText radiusEdit = binding.radiusEdit;
+        Button calcButton = binding.calcButton;
 
-        GAny javaFunc = GAny.function((v0, v1, v2) -> {
-            int i0 = v0.toInt32();
-            int i1 = v1.toInt32();
-            int i2 = v2.toInt32();
+        GAny tCircular = GAny.env("Cpp.Circular");
+        GAny circular = tCircular.New(3, 1, 1);
 
-            return GAny.create(Math.max(i0, Math.max(i1, i2)));
+        calcButton.setOnClickListener(view -> {
+            circular.setItem("radius", Float.parseFloat(radiusEdit.getText().toString()));
+            tv.setText(String.format("Origin: %s\nRadius: %.3f\nArea: %.3f\nC: %.3f",
+                    circular.getItem("origin").toString(),
+                    circular.callMethod("getRadius").toFloat(),
+                    circular.callMethod("getArea").toFloat(),
+                    circular.callMethod("getCircumference").toFloat()));
         });
-
-        if (javaFunc.isFunction()) {
-            tv.setText("Result: " + javaFunc.call(12, 7, 46));   // Result: 58
-        }
     }
 
     @Override

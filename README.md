@@ -8,7 +8,7 @@ Provide GAny support for Android, making it easy to load and call native code th
 Due to the limitations of the Android system on dlopen, it is necessary to dynamically link your module to the project. The specific steps are as follows:
 1. Add the source code or library files of the modules you need to load through G Any to the project.
 2. Link your module for `gany-droid` in `CMakeList.txt`.
-3. Follow the commented out code instructions in `src/gany-droid/src/import_modules.cpp` to introduce your module.
+3. Introduce your module in `src/gany-droid/src/import_modules.cpp` as prompted by the code in macro `ENABLE_EXAMPLE`.
 ### 2. Build
 Create a new build directory and enter it. Execute the following command (if cmake is not installed, please install it first, cmake version>=20):
 ```shell

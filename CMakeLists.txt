@@ -90,8 +90,14 @@ add_custom_command(TARGET gany-droid POST_BUILD
 )
 
 if (DEPLOY_EXAMPLE)
+    target_compile_definitions(gany-droid PRIVATE ENABLE_EXAMPLE=1)
+
+    add_subdirectory(examples/TestPlugin)
+    target_link_libraries(gany-droid PRIVATE test-plugin)
+
     set(EXAMPLE_LIBS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/examples/AndroidExample/app/libs)
     add_custom_command(TARGET gany-droid POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different ${T_LIBRARY_OUTPUT_PATH}/libtest-plugin.so ${OUTPUT_LIBS_DIR}/${ANDROID_ABI}
             COMMAND ${CMAKE_COMMAND} -E make_directory ${EXAMPLE_LIBS_DIR}
             COMMAND ${CMAKE_COMMAND} -E copy_directory ${OUTPUT_LIBS_DIR} ${EXAMPLE_LIBS_DIR}
     )

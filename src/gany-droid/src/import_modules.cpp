@@ -20,9 +20,17 @@
  * SOFTWARE.
  */
 
-//#include <gx/reg_gx.h>
+#include <gx/gany_core.h>
+
+#ifdef ENABLE_EXAMPLE
+
+#include <reg_plugin.h>
+
+#endif
 
 void importModules()
 {
-//    GANY_IMPORT_MODULE(Gx);
+#ifdef ENABLE_EXAMPLE
+    GANY_IMPORT_MODULE(TestPlugin);
+#endif
 }
