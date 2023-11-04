@@ -16,7 +16,8 @@ cmake \
     -DCMAKE_TOOLCHAIN_FILE=$NDK/build/cmake/android.toolchain.cmake \
     -DANDROID_ABI=$ABI \
     -DANDROID_PLATFORM=android-$MINSDKVERSION \
-    -G "MinGW Makefiles" ..
+    -G "MinGW Makefiles" \  # Only specify toolchain when using Windows, recommend using Ninja if conditions permit
+    ..
 cmake --build . --target gany-droid
 ```
 Description of parameters:[NDK Development Guide](https://developer.android.com/ndk/guides/cmake)

@@ -16,7 +16,8 @@ cmake \
     -DCMAKE_TOOLCHAIN_FILE=$NDK/build/cmake/android.toolchain.cmake \
     -DANDROID_ABI=$ABI \
     -DANDROID_PLATFORM=android-$MINSDKVERSION \
-    -G "MinGW Makefiles" ..
+    -G "MinGW Makefiles" \  # 仅当 Windows 时指定工具链, 有条件的情况下推荐使用Ninja
+    ..
 cmake --build . --target gany-droid
 ```
 参数的说明: [NDK开发指南](https://developer.android.com/ndk/guides/cmake)
