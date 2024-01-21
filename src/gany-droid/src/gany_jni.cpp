@@ -226,9 +226,18 @@ Java_com_gx_gany_GAny_nGAnyDestroy(JNIEnv *, jclass, jlong any)
 }
 
 extern "C" JNIEXPORT jlong JNICALL
-Java_com_gx_gany_GAny_nGAnyEnvironment(JNIEnv *, jclass)
+Java_com_gx_gany_GAny_nGAnyImport(JNIEnv *env, jclass, jstring v)
 {
-    return ganyEnvironment();
+    const char *cStr = env->GetStringUTFChars(v, nullptr);
+    GAnyPtr ret = ganyImport(cStr);
+    env->ReleaseStringUTFChars(v, cStr);
+    return ret;
+}
+
+extern "C" JNIEXPORT void JNICALL
+Java_com_gx_gany_GAny_nGAnyExport(JNIEnv *env, jclass, jlong clazz)
+{
+    ganyExport(clazz);
 }
 
 extern "C" JNIEXPORT jlong JNICALL

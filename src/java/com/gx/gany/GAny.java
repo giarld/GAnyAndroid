@@ -110,13 +110,13 @@ public class GAny implements Cloneable {
         throw new RuntimeException("Can only be used for new of class");
     }
 
-    public static GAny env() {
-        return createFromPtr(nGAnyEnvironment());
+    public static GAny Import(String path) {
+        return createFromPtr(nGAnyImport(path));
     }
 
-    public static GAny env(String packPath) {
-        GAny env = env();
-        return env.getItem(packPath);
+    public static void Export(GAny clazz)
+    {
+        nGAnyExport(clazz.mNativePtr);
     }
 
     public static GAny create(Object v) {
@@ -679,7 +679,9 @@ public class GAny implements Cloneable {
 
     private static native void nGAnyDestroy(long any);
 
-    private static native long nGAnyEnvironment();
+    private static native long nGAnyImport(String path);
+
+    private static native void nGAnyExport(long clazz);
 
     private static native long nGAnyClone(long any);
 

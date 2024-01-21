@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         EditText radiusEdit = binding.radiusEdit;
         Button calcButton = binding.calcButton;
 
-        GAny tCircular = GAny.env("Cpp.Circular");
+        GAny tCircular = GAny.Import("Cpp.Circular");
         GAny circular = tCircular.New(3, 1, 1);
 
         calcButton.setOnClickListener(view -> {
